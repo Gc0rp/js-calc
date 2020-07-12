@@ -41,6 +41,15 @@
     margin-bottom: 0.5%;
 }
 
+.number-pad .btn:hover{
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.number-pad .btn:active{
+    background-color: #efefef;
+}
+
 
 .number-pad .reset{
     flex: 0 1 49.7%;
@@ -58,8 +67,9 @@
 
 .number-pad .operation:hover{
     background-color: #ffaf5c;
+    cursor: pointer;
 }
 
-.number-pad .operation:focus{
-    background-color: red;
+.number-pad .operation:active{
+    background-color: orange;
 }

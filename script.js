@@ -1,9 +1,18 @@
 const screenText = document.getElementsByClassName("display-text");
-
 var total = 0;
 var currentOperations = "";
 var operatorPressed = false;
-var frontIsZero = true;
+
+
+function operatorClick(operator){
+    if(operatorPressed === true){
+        currentOperations += ")" + operator;
+        currentOperations = "(" + currentOperations;
+    } else{
+        currentOperations += operator;
+    }
+    screenText[0].innerText = "0";
+}
 
 document.querySelector(".number-pad").addEventListener('click', function(event){
     if(event.target.tagName === "BUTTON"){    
@@ -20,48 +29,23 @@ document.querySelector(".number-pad").addEventListener('click', function(event){
         } else if(event.target.className.split(' ').indexOf("operation") === 1){
             
             operatorPressed = true;
-            console.log(event.target.innerText);
-            if(event.target.innerText === '+'){ 
 
-                if(operatorPressed === true){
-                    currentOperations += ")+";
-                    currentOperations = "(" + currentOperations;
-                } else{
-                    currentOperations += "+";
-                }
-                screenText[0].innerText = "0";
-
-            } else if(event.target.innerText === '-'){
-                
-                if(operatorPressed === true){
-                    currentOperations += ")-";
-                    currentOperations = "(" + currentOperations;
-                } else {
-                    currentOperations += "-";
-                }
-                screenText[0].innerText = "0"
-            
-            } else if (event.target.innerText === 'x'){
-
-                if(operatorPressed === true){
-                    currentOperations += ")*";
-                    currentOperations = "(" + currentOperations;
-                } else {
-                    currentOperations += "*";
-                }
-                screenText[0].innerText = "0";
-
-            } else if(event.target.innerText === "÷"){
-                if(operatorPressed === true){
-                    currentOperations += ")/";
-                    currentOperations = "(" + currentOperations;
-                } else {
-                    currentOperations += "/";
-                }
-                screenText[0].innerText = "0";
-                
-            } else if(event.target.innerText === '='){
-                screenText[0].innerText = eval(currentOperations);
+            switch(event.target.innerText){
+                case '+':
+                    operatorClick('+');
+                    break;
+                case '-':
+                    operatorClick('-');
+                    break;
+                case 'x':
+                    operatorClick('*');
+                    break;
+                case '÷':
+                    operatorClick('/');
+                    break;
+                case '=':
+                    screenText[0].innerText = eval(currentOperations);
+                    break;
             }
 
         } else {
